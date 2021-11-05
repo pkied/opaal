@@ -26,7 +26,6 @@ class OpaalUI {
     void _mvTimeHour();
     void _modeTitle(char *title);
     void _mvSettings(char *title, char *value, char *prefix = "", char *postfix = ""); 
-    char* _friendlyLT(float lightTemperature);
     OpaalFan *_fan;
     OpaalConfig *_conf;
     OpaalLamp *_lamp;

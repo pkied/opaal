@@ -39,47 +39,42 @@ void OpaalUI::run() {
   char vbuf[10];
   if (this->_mode == 0) this->_mvClock();
   if (this->_mode == 1) {
-    sprintf(vbuf,"[%02u]:%02u", hour(), minute()); 
+    sprintf(vbuf,"%02u:%02u", hour(), minute()); 
     this->_mvSettings("Time settings: hour", vbuf);
   }
   if (this->_mode == 2) {
-    sprintf(vbuf,"%02u:[%02u]", hour(), minute()); 
+    sprintf(vbuf,"%02u:%02u", hour(), minute()); 
     this->_mvSettings("Time settings: minute", vbuf);
   }
   if (this->_mode == 3) {
-    sprintf(vbuf,"[%02u]:%02u", this->_conf->getCnfStartHour(), this->_conf->getCnfStartMinute()); 
+    sprintf(vbuf,"%02u:%02u", this->_conf->getCnfStartHour(), this->_conf->getCnfStartMinute()); 
     this->_mvSettings("Start time: hour", vbuf);
   }
   if (this->_mode == 4) {
-    sprintf(vbuf,"%02u:[%02u]", this->_conf->getCnfStartHour(), this->_conf->getCnfStartMinute()); 
+    sprintf(vbuf,"%02u:%02u", this->_conf->getCnfStartHour(), this->_conf->getCnfStartMinute()); 
     this->_mvSettings("Start time: minute", vbuf);
   }
   if (this->_mode == 5) {
-    sprintf(vbuf,"[%02u]", this->_conf->getCnfDayDurationHours()); 
+    sprintf(vbuf,"%02u", this->_conf->getCnfDayDurationHours()); 
     this->_mvSettings("Day duration: hours", vbuf);
   }
   if (this->_mode == 6) {
-    sprintf(vbuf,"[%02u]", this->_conf->getCnfMoonDurationHours()); 
+    sprintf(vbuf,"%02u", this->_conf->getCnfMoonDurationHours()); 
     this->_mvSettings("Moon duration: hours", vbuf);
   }
   if (this->_mode == 7) {
-    sprintf(vbuf,"[%u%%]", this->_conf->getCnfLampPower()); 
+    sprintf(vbuf,"%u%%", this->_conf->getCnfLampPower()); 
     this->_mvSettings("Lamp power", vbuf);
   }
   if (this->_mode == 8) {
-    sprintf(vbuf,"[%s]", this->_friendlyLT(this->_conf->getCnfLightTemperature())); 
+    char flt[] = "W-----------C"; byte pos = (byte)((this->_conf->getCnfLightTemperature()+1.0)*5.0)+1; flt[pos] = '|';
+    sprintf(vbuf,"%s", flt); 
     this->_mvSettings("Light temperature", vbuf);
   }
   if (this->_mode == 9) {
-    this->_mvSettings("Save settings?", "[NO]");
+    this->_mvSettings("Save settings?", "NO");
   }
 
-
-}
-
-/* -------------------------------------------------------------------- */
-char *OpaalUI::_friendlyLT(float lightTemperature) {
-  return "W-----|-----C";
 }
 
 /* -------------------------------------------------------------------- */
@@ -97,17 +92,19 @@ void OpaalUI::_mvSettings(char *title, char *value, char *prefix = "", char *pos
 
 /* -------------------------------------------------------------------- */
 void OpaalUI::_mvStatusBar() {
+  char colName[][10] = {"Night", "Sunrise", "Day", "Sunset", "Moon"};
   this->_oled.setFont(Callibri11);
   this->_oled.setCursor(0,0);
-  this->_oled.print(this->_lamp->getColor());
+  this->_oled.print(colName[this->_lamp->getColor()]);
   this->_oled.print(" ");
-  this->_oled.print(this->_mode);
+  this->_oled.print((byte)(this->_conf->getCnfLampPower()*100));
+  this->_oled.print("%");
 
   byte temp = round(RTC.temperature() / 4.0);
   this->_oled.print(" ");
   this->_oled.print(temp);
-  this->_oled.print(" oC");
-  if (this->_fan->isOn()) this->_oled.print(" (cooling)");  
+  this->_oled.print("oC");
+  if (this->_fan->isOn()) this->_oled.print("~");  
 };
 
 /* -------------------------------------------------------------------- */

@@ -50,6 +50,7 @@ class OpaalLamp {
   public:
     void setOn(bool newOn);
     void setPower(float newPower);
+    float getPower();
     void setTemperature(float newTemperature);
     void changeColor(byte newColor, unsigned long changeMillis);
     byte getColor();

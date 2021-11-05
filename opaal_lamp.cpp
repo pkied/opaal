@@ -22,6 +22,11 @@ void OpaalLamp::setPower(float newPower) {
 }
 
 /* -------------------------------------------------------------------- */
+float OpaalLamp::getPower() {
+  return this->_power;
+}
+
+/* -------------------------------------------------------------------- */
 void OpaalLamp::changeColor(byte newColor, unsigned long changeMillis) {
   this->_color = newColor;
   for (byte chi=0; chi<CHI_COUNT; chi++) {
