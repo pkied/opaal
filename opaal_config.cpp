@@ -72,20 +72,21 @@ void OpaalConfig::setCnfLightTemperature(float newLightTemperature) {
 
 /* -------------------------------------------------------------------- */
 void OpaalConfig::save() {
-   eeprom_write_block(&this->_cnfStartHour,0,2);
-   eeprom_write_block(&this->_cnfStartMinute,2,2);
-   eeprom_write_block(&this->_cnfDayDurationHours,4,2);
-   eeprom_write_block(&this->_cnfMoonDurationHours,6,2);
-   eeprom_write_block(&this->_cnfLampPower,8,4);
-   eeprom_write_block(&this->_cnfLightTemperature,12,4);
+  eeprom_write_block(&this->_cnfStartHour,0,2);
+  eeprom_write_block(&this->_cnfStartMinute,2,2);
+  eeprom_write_block(&this->_cnfDayDurationHours,4,2);
+  eeprom_write_block(&this->_cnfMoonDurationHours,6,2);
+  eeprom_write_block(&this->_cnfLampPower,8,4);
+  eeprom_write_block(&this->_cnfLightTemperature,12,4);
+  delay(1000);
 }
 
 /* -------------------------------------------------------------------- */
 void OpaalConfig::load() {
-   eeprom_read_block(&this->_cnfStartHour,0,2);
-   eeprom_read_block(&this->_cnfStartMinute,2,2);
-   eeprom_read_block(&this->_cnfDayDurationHours,4,2);
-   eeprom_read_block(&this->_cnfMoonDurationHours,6,2);
-   eeprom_read_block(&this->_cnfLampPower,8,4);
-   eeprom_read_block(&this->_cnfLightTemperature,12,4);
+  eeprom_read_block(&this->_cnfStartHour,0,2);
+  eeprom_read_block(&this->_cnfStartMinute,2,2);
+  eeprom_read_block(&this->_cnfDayDurationHours,4,2);
+  eeprom_read_block(&this->_cnfMoonDurationHours,6,2);
+  eeprom_read_block(&this->_cnfLampPower,8,4);
+  eeprom_read_block(&this->_cnfLightTemperature,12,4);
 }

@@ -12,6 +12,7 @@
 #include "opaal_fan.h"
 #include "opaal_config.h"
 #include "opaal_lamp.h"
+#include "opaal_scheduler.h"
 #include <JC_Button.h>
 #include <DS3232RTC.h>
 
@@ -23,15 +24,15 @@ class OpaalUI {
     byte _mode = 0;
     void _mvStatusBar();
     void _mvClock();
-    void _mvTimeHour();
-    void _modeTitle(char *title);
+    void _mvSave();
     void _mvSettings(char *title, char *value, char *prefix = "", char *postfix = ""); 
     OpaalFan *_fan;
     OpaalConfig *_conf;
     OpaalLamp *_lamp;
+    OpaalScheduler *_scheduler;
   public:
     OpaalUI();
-    void begin(OpaalFan *newFan, OpaalConfig *newConf, OpaalLamp *newLamp);
+    void begin(OpaalFan *newFan, OpaalConfig *newConf, OpaalLamp *newLamp, OpaalScheduler *newScheduler);
     void run();
 };
 #endif

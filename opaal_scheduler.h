@@ -17,7 +17,7 @@ class OpaalScheduler {
   private:
     OpaalLamp* _lamp;
     OpaalEvent events[EVENTS_NUMBER];
-    unsigned long _transitionTime = 10000;//3600000;
+    unsigned long _transitionTime = 3600000;
   public:
     void begin(OpaalLamp* newLamp);
     void simpleSetup(word newStartHour, word newStartMinute, word newDayDurationHours, word newMoonDurationHours, unsigned long newTransitionTimeMillis);

@@ -18,6 +18,7 @@ class OpaalConfig {
     word _cnfMoonDurationHours = 4;
     float _cnfLampPower = 0.7;
     float _cnfLightTemperature = 0.0;
+    bool _isSaving = 0;
   public:
     void begin();
     void save();
