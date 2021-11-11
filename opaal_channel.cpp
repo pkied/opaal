@@ -18,6 +18,7 @@ void OpaalChannel::reset(byte newPinNumber) {
   this->_realPower = 0.0;
   this->_realPowerChangeStep = 0.0;
   this->_realPowerChangeTarget = 0.0;
+  analogWrite(this->_pinNumber, 0);
   pinMode(this->_pinNumber, OUTPUT);
   analogWrite(this->_pinNumber, 0);
   this->_stepTimer.begin(TICK);

@@ -22,6 +22,7 @@ class OpaalUI {
     Button _selectButton;
     SSD1306AsciiWire _oled;
     byte _mode = 0;
+    unsigned long _screenBlankTime = 10000;
     void _mvStatusBar();
     void _mvClock();
     void _mvSave();

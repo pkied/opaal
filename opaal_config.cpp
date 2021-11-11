@@ -31,6 +31,16 @@ word OpaalConfig::getCnfMoonDurationHours() {
 }
 
 /* -------------------------------------------------------------------- */
+word OpaalConfig::getCnfTransitionMinutes() {
+    return this->_cnfTransitionMinutes;
+}
+
+/* -------------------------------------------------------------------- */
+word OpaalConfig::getCnfScreenBlankMinutes() {
+    return this->_cnfScreenBlankMinutes;
+}
+
+/* -------------------------------------------------------------------- */
 float OpaalConfig::getCnfLampPower() {
   return this->_cnfLampPower;
 }
@@ -61,6 +71,16 @@ void OpaalConfig::setCnfMoonDurationHours(word newMoonDurationHours) {
 }
 
 /* -------------------------------------------------------------------- */
+void OpaalConfig::setCnfTransitionMinutes(word newTransitionMinutes) {
+    this->_cnfTransitionMinutes = newTransitionMinutes;
+}
+
+/* -------------------------------------------------------------------- */
+void OpaalConfig::setCnfScreenBlankMinutes(word newScreenBlankMinutes) {
+    this->_cnfScreenBlankMinutes = newScreenBlankMinutes;
+}
+
+/* -------------------------------------------------------------------- */
 void OpaalConfig::setCnfLampPower(float newLampPower) {
   this->_cnfLampPower = newLampPower;
 }
@@ -72,21 +92,26 @@ void OpaalConfig::setCnfLightTemperature(float newLightTemperature) {
 
 /* -------------------------------------------------------------------- */
 void OpaalConfig::save() {
+  RTC.set(now());
   eeprom_write_block(&this->_cnfStartHour,0,2);
   eeprom_write_block(&this->_cnfStartMinute,2,2);
   eeprom_write_block(&this->_cnfDayDurationHours,4,2);
   eeprom_write_block(&this->_cnfMoonDurationHours,6,2);
-  eeprom_write_block(&this->_cnfLampPower,8,4);
-  eeprom_write_block(&this->_cnfLightTemperature,12,4);
-  delay(1000);
+  eeprom_write_block(&this->_cnfTransitionMinutes,8,2);
+  eeprom_write_block(&this->_cnfScreenBlankMinutes,10,2);
+  eeprom_write_block(&this->_cnfLampPower,12,4);
+  eeprom_write_block(&this->_cnfLightTemperature,16,4);
 }
 
 /* -------------------------------------------------------------------- */
 void OpaalConfig::load() {
+  setSyncProvider(RTC.get);
   eeprom_read_block(&this->_cnfStartHour,0,2);
   eeprom_read_block(&this->_cnfStartMinute,2,2);
   eeprom_read_block(&this->_cnfDayDurationHours,4,2);
   eeprom_read_block(&this->_cnfMoonDurationHours,6,2);
-  eeprom_read_block(&this->_cnfLampPower,8,4);
-  eeprom_read_block(&this->_cnfLightTemperature,12,4);
+  eeprom_read_block(&this->_cnfTransitionMinutes,8,2);
+  eeprom_read_block(&this->_cnfScreenBlankMinutes,10,2);
+  eeprom_read_block(&this->_cnfLampPower,12,4);
+  eeprom_read_block(&this->_cnfLightTemperature,16,4);
 }

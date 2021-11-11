@@ -8,6 +8,7 @@
 #define opaal_config_h
 
 #include <Arduino.h>
+#include <DS3232RTC.h>
 #include <avr/eeprom.h>
 
 class OpaalConfig {
@@ -18,6 +19,8 @@ class OpaalConfig {
     word _cnfMoonDurationHours = 4;
     float _cnfLampPower = 0.7;
     float _cnfLightTemperature = 0.0;
+    word _cnfTransitionMinutes = 1;
+    word _cnfScreenBlankMinutes = 1;
     bool _isSaving = 0;
   public:
     void begin();
@@ -27,12 +30,16 @@ class OpaalConfig {
     word getCnfStartMinute();
     word getCnfDayDurationHours();
     word getCnfMoonDurationHours();
+    word getCnfTransitionMinutes();
+    word getCnfScreenBlankMinutes();
     float getCnfLampPower();
     float getCnfLightTemperature();
     void setCnfStartHour(word newStartHour);
     void setCnfStartMinute(word newStartMinute);
     void setCnfDayDurationHours(word newDayDurationHours);
     void setCnfMoonDurationHours(word newMoonDurationHours);
+    void setCnfTransitionMinutes(word newTransitionMinutes);
+    void setCnfScreenBlankMinutes(word newScreenBlankMinutes);
     void setCnfLampPower(float newLampPower);
     void setCnfLightTemperature(float newLightTemperature);
 };

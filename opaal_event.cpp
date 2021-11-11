@@ -12,6 +12,11 @@ void OpaalEvent::setHourMinute(word newHour, word newMinute) {
 }
 
 /* -------------------------------------------------------------------- */
+void OpaalEvent::setMinute(word newMinute) {
+  this->_minute = newMinute; 
+}
+
+/* -------------------------------------------------------------------- */
 void OpaalEvent::setAction(byte newAction) {
   this->_action = newAction;
 }

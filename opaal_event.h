@@ -17,6 +17,7 @@ class OpaalEvent {
     bool _isAvailable;
   public:
     void setHourMinute(word newHour, word newMinute);
+    void setMinute(word newMinute);
     void setAction(byte newAction);
     byte getAction();
     bool isAvailable();

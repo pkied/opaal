@@ -18,13 +18,19 @@ void OpaalScheduler::begin(OpaalLamp* newLamp) {
 }
 
 /* -------------------------------------------------------------------- */
-void OpaalScheduler::simpleSetup(word newStartHour, word newStartMinute, word newDayDurationHours, word newMoonDurationHours, unsigned long newTransitionTimeMillis) {
+void OpaalScheduler::setTransitionTimeMillis(unsigned long newTransitionTimeMillis) {
   this->_transitionTime = newTransitionTimeMillis;
-  this->events[0].begin(newStartHour+newStartMinute,0,COL_SUNRISE);
-  this->events[1].begin(newStartHour+newStartMinute,30,COL_SUNTOP);
-  this->events[2].begin(newStartHour+newStartMinute+newDayDurationHours-1,30,COL_SUNSET);
-  this->events[3].begin(newStartHour+newStartMinute+newDayDurationHours,0,COL_MOON);
-  this->events[4].begin(newStartHour+newStartMinute+newDayDurationHours+newMoonDurationHours-1,30,COL_NIGHT);
+}
+
+/* -------------------------------------------------------------------- */
+void OpaalScheduler::simpleSetup(word newStartHour, word newStartMinute, word newDayDurationHours, word newMoonDurationHours, unsigned long newTransitionTimeMillis) {
+  this->_lamp->changeColor(COL_NIGHT, 0);
+  this->_transitionTime = newTransitionTimeMillis;
+  this->events[0].setMinute((newStartHour*60)+newStartMinute);
+  this->events[1].setMinute((newStartHour*60)+newStartMinute+30);
+  this->events[2].setMinute((newStartHour*60)+newStartMinute+(newDayDurationHours*60)-30);
+  this->events[3].setMinute((newStartHour*60)+newStartMinute+(newDayDurationHours*60));
+  this->events[4].setMinute((newStartHour*60)+newStartMinute+(newDayDurationHours*60)+(newMoonDurationHours*60));
 }
 
 /* -------------------------------------------------------------------- */
