@@ -1,4 +1,4 @@
-# OPAAL: One-piece automated aquarium lamp
+# OPAAL: One-Piece Automated Aquarium Lamp
 
 https://github.com/pkied/opaal
 README file
