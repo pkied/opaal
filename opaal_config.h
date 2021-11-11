@@ -20,7 +20,6 @@ class OpaalConfig {
     float _cnfLampPower = 0.7;
     float _cnfLightTemperature = 0.0;
     word _cnfTransitionMinutes = 1;
-    word _cnfScreenBlankMinutes = 1;
     bool _isSaving = 0;
   public:
     void begin();
@@ -39,7 +38,6 @@ class OpaalConfig {
     void setCnfDayDurationHours(word newDayDurationHours);
     void setCnfMoonDurationHours(word newMoonDurationHours);
     void setCnfTransitionMinutes(word newTransitionMinutes);
-    void setCnfScreenBlankMinutes(word newScreenBlankMinutes);
     void setCnfLampPower(float newLampPower);
     void setCnfLightTemperature(float newLightTemperature);
 };

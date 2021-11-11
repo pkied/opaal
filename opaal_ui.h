@@ -13,16 +13,18 @@
 #include "opaal_config.h"
 #include "opaal_lamp.h"
 #include "opaal_scheduler.h"
+#include <Timers.h>
 #include <JC_Button.h>
 #include <DS3232RTC.h>
 
 class OpaalUI {
   private:
+    Timer _screenBlankTimer;
     Button _modeButton;
     Button _selectButton;
     SSD1306AsciiWire _oled;
-    byte _mode = 0;
-    unsigned long _screenBlankTime = 10000;
+    byte _mode = 1;
+    unsigned long _screenBlankTime = 60000;
     void _mvStatusBar();
     void _mvClock();
     void _mvSave();
@@ -33,6 +35,8 @@ class OpaalUI {
     OpaalScheduler *_scheduler;
   public:
     OpaalUI();
+    void setScreenBlankTime(unsigned long newScreenBlankTime);
+    unsigned long getScreenBlankTime();
     void begin(OpaalFan *newFan, OpaalConfig *newConf, OpaalLamp *newLamp, OpaalScheduler *newScheduler);
     void run();
 };

@@ -35,10 +35,6 @@ word OpaalConfig::getCnfTransitionMinutes() {
     return this->_cnfTransitionMinutes;
 }
 
-/* -------------------------------------------------------------------- */
-word OpaalConfig::getCnfScreenBlankMinutes() {
-    return this->_cnfScreenBlankMinutes;
-}
 
 /* -------------------------------------------------------------------- */
 float OpaalConfig::getCnfLampPower() {
@@ -76,11 +72,6 @@ void OpaalConfig::setCnfTransitionMinutes(word newTransitionMinutes) {
 }
 
 /* -------------------------------------------------------------------- */
-void OpaalConfig::setCnfScreenBlankMinutes(word newScreenBlankMinutes) {
-    this->_cnfScreenBlankMinutes = newScreenBlankMinutes;
-}
-
-/* -------------------------------------------------------------------- */
 void OpaalConfig::setCnfLampPower(float newLampPower) {
   this->_cnfLampPower = newLampPower;
 }
@@ -98,7 +89,6 @@ void OpaalConfig::save() {
   eeprom_write_block(&this->_cnfDayDurationHours,4,2);
   eeprom_write_block(&this->_cnfMoonDurationHours,6,2);
   eeprom_write_block(&this->_cnfTransitionMinutes,8,2);
-  eeprom_write_block(&this->_cnfScreenBlankMinutes,10,2);
   eeprom_write_block(&this->_cnfLampPower,12,4);
   eeprom_write_block(&this->_cnfLightTemperature,16,4);
 }
@@ -111,7 +101,6 @@ void OpaalConfig::load() {
   eeprom_read_block(&this->_cnfDayDurationHours,4,2);
   eeprom_read_block(&this->_cnfMoonDurationHours,6,2);
   eeprom_read_block(&this->_cnfTransitionMinutes,8,2);
-  eeprom_read_block(&this->_cnfScreenBlankMinutes,10,2);
   eeprom_read_block(&this->_cnfLampPower,12,4);
   eeprom_read_block(&this->_cnfLightTemperature,16,4);
 }

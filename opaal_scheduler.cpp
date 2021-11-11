@@ -11,10 +11,10 @@ void OpaalScheduler::begin(OpaalLamp* newLamp) {
   this->_lamp = newLamp;
   this->_lamp->changeColor(COL_NIGHT, 0);
   this->events[0].begin(8,0,COL_SUNRISE);
-  this->events[1].begin(8,5,COL_SUNTOP);
-  this->events[2].begin(8,10,COL_SUNSET);
-  this->events[3].begin(8,15,COL_MOON);
-  this->events[4].begin(9,0,COL_NIGHT);
+  this->events[1].begin(10,0,COL_SUNTOP);
+  this->events[2].begin(19,0,COL_SUNSET);
+  this->events[3].begin(20,0,COL_MOON);
+  this->events[4].begin(22,0,COL_NIGHT);
 }
 
 /* -------------------------------------------------------------------- */
@@ -31,6 +31,9 @@ void OpaalScheduler::simpleSetup(word newStartHour, word newStartMinute, word ne
   this->events[2].setMinute((newStartHour*60)+newStartMinute+(newDayDurationHours*60)-30);
   this->events[3].setMinute((newStartHour*60)+newStartMinute+(newDayDurationHours*60));
   this->events[4].setMinute((newStartHour*60)+newStartMinute+(newDayDurationHours*60)+(newMoonDurationHours*60));
+  for (byte ei=0; ei>4; ei++) { 
+    this->events[ei].reset();
+  }
 }
 
 /* -------------------------------------------------------------------- */
