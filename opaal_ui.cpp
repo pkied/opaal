@@ -126,4 +126,5 @@ void OpaalUI::_mvClock() {
   this->_oled.setFont(CalLite24);
   this->_oled.setCursor(38,3);
   this->_oled.print(time_buf);
+  this->_oled.clearToEOL();
 };
